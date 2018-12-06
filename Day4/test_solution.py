@@ -18,8 +18,10 @@ testdata = process_timetable("""[1518-11-01 00:00] Guard #10 begins shift
 [1518-11-05 00:45] falls asleep
 [1518-11-05 00:55] wakes up""".split('\n'))
 
+
 def test_part1():
     assert(part1(testdata) == 240)
+
 
 def test_part2():
     assert(part2(testdata) == 4455)
