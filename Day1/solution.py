@@ -1,10 +1,4 @@
-def process_input(filename):
-    # load the input data
-    with open(filename,'r') as fh:
-        data = fh.readlines()
-
-    # interpret each entry as an integer
-    return [int(q) for q in data]
+from utils import load_input
 
 
 def part1(input):
@@ -32,7 +26,8 @@ def part2(input):
 
 
 if __name__ == '__main__':
-    input = process_input('input.txt')
+    # process the input into a list of integers
+    input = [int(q) for q in load_input('input.txt')]
 
     print('Part 1:', part1(input))
     print('Part 2:', part2(input))
