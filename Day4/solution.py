@@ -15,9 +15,9 @@ def process_timetable(timetable):
         minute = dt[-2:]
 
         # process the date
-        dt_obj = datetime.strptime(dt[1:],'%Y-%m-%d %H:%M')
+        dt_obj = datetime.strptime(dt[1:], '%Y-%m-%d %H:%M')
 
-        chronological.append((dt_obj,minute, desc[1:]))
+        chronological.append((dt_obj, minute, desc[1:]))
 
     # sort the timetable by chronological order
     chronological.sort(key=lambda x: x[0])
@@ -30,7 +30,7 @@ def process_timetable(timetable):
     sleep_start_minute = -1
 
     for entry in chronological:
-        _,minute,desc = entry
+        _, minute, desc = entry
 
         if 'begins shift' in desc:
             if guard != -1:
@@ -48,7 +48,7 @@ def process_timetable(timetable):
 
     # append the final entry
     if guard != -1:
-        log.append((int(guard),tmp_log))
+        log.append((int(guard), tmp_log))
 
     return log
 
@@ -66,10 +66,10 @@ def part1(log):
     guard = max(minutes_slept, key=minutes_slept.get)
 
     # now find the minute that they slept the most
-    filtered_log = [x for t in list(filter(lambda x: int(x[0]) == guard,log)) for x in t[1]]
+    filtered_log = [x for t in list(filter(lambda x: int(x[0]) == guard, log)) for x in t[1]]
 
     c = Counter(filtered_log)
-    m = max(c,key=c.get)
+    m = max(c, key=c.get)
 
     return guard * m
 
@@ -88,20 +88,23 @@ def part2(log):
         minutes_by_guard[guard].extend(entry)
 
     # for each guard, counter the entries for each minute
-    counter_by_guard = [(q,Counter(minutes_by_guard[q])) for q in minutes_by_guard]
+    counter_by_guard = [(q, Counter(minutes_by_guard[q])) for q in minutes_by_guard]
 
     # find the guard with the most frequently occurring sleep minute overall
-    max_guard = max(counter_by_guard, key=lambda q: q[1][max(q[1],key=q[1].get)])
+    max_guard = max(counter_by_guard, key=lambda q: q[1][max(q[1], key=q[1].get)])
 
     # find the corresponding maximum minute for that guard
-    max_key = max(max_guard[1],key=max_guard[1].get)
+    max_key = max(max_guard[1], key=max_guard[1].get)
 
     return max_guard[0] * max_key
 
 
-if __name__ == '__main__':
-    timetable = load_input('input.txt')
-    log = process_timetable(timetable)
+def main():
+    processed_log = process_timetable(load_input('input.txt'))
 
-    print('Part 1:', part1(log))
-    print('Part 2:', part2(log))
+    print('Part 1:', part1(processed_log))
+    print('Part 2:', part2(processed_log))
+
+
+if __name__ == '__main__':
+    main()

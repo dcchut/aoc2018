@@ -20,8 +20,8 @@ testdata = process_timetable("""[1518-11-01 00:00] Guard #10 begins shift
 
 
 def test_part1():
-    assert(part1(testdata) == 240)
+    assert (part1(testdata) == 240)
 
 
 def test_part2():
-    assert(part2(testdata) == 4455)
+    assert (part2(testdata) == 4455)

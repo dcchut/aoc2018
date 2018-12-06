@@ -17,7 +17,7 @@ def build_replace_strings(base_units):
     return replace_strings
 
 
-def react(polymer,base_units):
+def react(polymer, base_units):
     # get the replacement strings
     replace_strings = build_replace_strings(base_units)
     length = len(replace_strings)
@@ -27,13 +27,13 @@ def react(polymer,base_units):
     while j < length:
         current_length = len(polymer)
         for rs in replace_strings:
-            polymer = polymer.replace(rs,'')
+            polymer = polymer.replace(rs, '')
 
             # did a reaction occur?
             new_length = len(polymer)
 
             if new_length < current_length:
-                # we set j to -1 here because we'll increment it y 1 at the end of the while loop
+                # we set j to -1 here because we'll increment it by 1 at the end of the while loop
                 j = -1
                 break
         j += 1
@@ -53,11 +53,16 @@ def part2(polymer):
     polymer = react(polymer, base_units)
 
     # find the base unit that, when removed, gives the smallest polymer after reacting
-    return min([len(react(polymer.replace(q,'').replace(q.upper(),''),base_units)) for q in base_units])
+    return min([len(react(polymer.replace(q, '').replace(q.upper(), ''), base_units)) for q in base_units])
+
+
+def main():
+    initial_polymer = load_input('input.txt')[0]
+
+    print('Part 1:', part1(initial_polymer))
+    print('Part 2:', part2(initial_polymer))
 
 
 if __name__ == '__main__':
-    polymer = load_input('input.txt')[0]
+    main()
 
-    print('Part 1:', part1(polymer))
-    print('Part 2:', part2(polymer))
