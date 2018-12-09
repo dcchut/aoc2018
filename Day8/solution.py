@@ -1,4 +1,4 @@
-from utils import load_input, parallel_map
+from utils import load_input
 
 
 def treeverse(input):
