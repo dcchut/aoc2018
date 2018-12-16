@@ -17,8 +17,16 @@ def get_numbers(string):
     return mapint(re.findall(r"(-?\d+)", string))
 
 
+def mapli(li, fn):
+    return [fn(q) for q in li]
+
+
 def mapint(li):
-    return [int(q) for q in li]
+    return mapli(li, int)
+
+
+def mapstr(li):
+    return mapli(li, str)
 
 
 def parallel_map(inputs, fn, unpack=False):
