@@ -10,9 +10,9 @@ def tick(board, carts):
     sorted_cart_keys = sorted(carts.keys(), key=lambda e: (e[1], e[0]))
     deleted_keys = []
 
-    for (x,y) in sorted_cart_keys:
+    for (x, y) in sorted_cart_keys:
         # if this cart has been destroyed, then we don't move it
-        if (x,y) in deleted_keys:
+        if (x, y) in deleted_keys:
             continue
 
         direction, state, id = carts[(x, y)]
@@ -40,9 +40,9 @@ def tick(board, carts):
         # is there a cart at the target position?
         if (tx, ty) in carts:
             # remove the two carts from the simulation
-            del new_carts[(x,y)]
-            del new_carts[(tx,ty)]
-            deleted_keys.append((tx,ty))
+            del new_carts[(x, y)]
+            del new_carts[(tx, ty)]
+            deleted_keys.append((tx, ty))
             deleted_keys.append((x, y))
             carts = new_carts
             continue
@@ -50,11 +50,11 @@ def tick(board, carts):
         # if there is no cart at the target position, determine if a change in direction is necessary
         target_board_state = board[(tx, ty)]
 
-        piece_mappings = {3 : {'N' : 'E', 'S' : 'W', 'E' : 'N', 'W' : 'S'},
-                          4 : {'N' : 'W', 'S' : 'E', 'E' : 'S', 'W' : 'N'},
-                          5 : [{'N' : 'W', 'S' : 'E', 'E' : 'N', 'W' : 'S'},
-                               {},
-                               {'N' : 'E', 'S' : 'W', 'E' : 'S', 'W' : 'N'}]}
+        piece_mappings = {3: {'N': 'E', 'S': 'W', 'E': 'N', 'W': 'S'},
+                          4: {'N': 'W', 'S': 'E', 'E': 'S', 'W': 'N'},
+                          5: [{'N': 'W', 'S': 'E', 'E': 'N', 'W': 'S'},
+                              {},
+                              {'N': 'E', 'S': 'W', 'E': 'S', 'W': 'N'}]}
 
         new_direction = direction
         new_state = state
@@ -80,7 +80,7 @@ def main():
     carts = {}
     k = 0
 
-    for (y,line) in enumerate(track):
+    for (y, line) in enumerate(track):
         for (x, c) in enumerate(line):
             b = None
             if c == '|':
@@ -94,23 +94,23 @@ def main():
             if c == '+':
                 b = 5
             if c == '^':
-                carts[(x,y)] = ['N',0, k]
+                carts[(x, y)] = ['N', 0, k]
                 b = 1
                 k += 1
             if c == 'v':
-                carts[(x,y)] = ['S',0, k]
+                carts[(x, y)] = ['S', 0, k]
                 b = 1
                 k += 1
             if c == '>':
-                carts[(x,y)] = ['E',0, k]
+                carts[(x, y)] = ['E', 0, k]
                 b = 2
                 k += 1
             if c == '<':
-                carts[(x,y)] = ['W',0, k]
+                carts[(x, y)] = ['W', 0, k]
                 b = 2
                 k += 1
             if b is not None:
-                board[(x,y)] = b
+                board[(x, y)] = b
 
     has_crashed = False
     while True:
