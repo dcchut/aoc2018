@@ -3,7 +3,7 @@ from collections import Counter
 
 from joblib import Parallel, delayed
 
-from utils import load_input
+from utils import load_input, get_numbers
 
 
 def distance(p, q):
@@ -108,7 +108,7 @@ def part2(point_list, boundary=1000, limit=10000):
 
 def main():
     # get the list of points
-    points = [(int(q[0]), int(q[1])) for q in [q.split(', ') for q in load_input('input.txt')]]
+    points = [get_numbers(q) for q in load_input('input.txt')]
 
     print('Part 1:', part1(points))
     print('Part 2:', part2(points))

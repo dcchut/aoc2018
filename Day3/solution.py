@@ -1,14 +1,4 @@
-from utils import load_input
-
-
-def process_input(line):
-    s = line.split()
-
-    x, y = s[2][:-1].split(',')
-    w, h = s[3].split('x')
-    i = s[0][1:]
-
-    return int(i), int(x), int(y), int(w), int(h)
+from utils import load_input, get_numbers
 
 
 def fill_board_entry(board, _, x, y, w, h):
@@ -57,7 +47,7 @@ def part2(entries):
 
 
 def main():
-    processed_input = [process_input(q) for q in load_input('input.txt')]
+    processed_input = [get_numbers(q) for q in load_input('input.txt')]
 
     print('Part 1:', part1(processed_input))
     print('Part 2:', part2(processed_input))
