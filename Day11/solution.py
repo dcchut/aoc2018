@@ -23,6 +23,8 @@ def power_level(x, y, serial):
 def summed_area_table(serial_number):
     sat = defaultdict(int)
 
+    # the (x,y) entry of sat is the sum of all of the entries above & to the left of (x,y)
+    # in the power level table
     for y in range(1, 301):
         for x in range(1, 301):
             sat[(x, y)] = power_level(x, y, serial_number) + sat[(x, y - 1)] + sat[(x - 1, y)] - sat[(x - 1, y - 1)]
@@ -31,6 +33,7 @@ def summed_area_table(serial_number):
 
 
 def max_power_level(size, sat):
+    # get the coordinate and total power of the rectangle with largest total power
     power_levels = {(x, y): rectangle_power(x, y, size, sat) for x in range(1, 301 - size) for y in
                     range(1, 301 - size)}
     m = max(power_levels, key=power_levels.get)
