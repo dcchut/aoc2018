@@ -29,6 +29,11 @@ def mapstr(li):
     return mapli(li, str)
 
 
+def intersection(lst1, lst2):
+    lst3 = [value for value in lst1 if value in lst2]
+    return lst3
+
+
 def parallel_map(inputs, fn, unpack=False):
     num_cores = multiprocessing.cpu_count()
 
