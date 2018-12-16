@@ -1,4 +1,5 @@
 import multiprocessing
+import re
 
 from joblib import Parallel, delayed
 
@@ -9,6 +10,15 @@ def load_input(filename):
         data = fh.read()
 
     return data.split('\n')
+
+
+def get_numbers(string):
+    # get all of the numbers appearing in a given string
+    return mapint(re.findall(r"(-?\d+)", string))
+
+
+def mapint(li):
+    return [int(q) for q in li]
 
 
 def parallel_map(inputs, fn, unpack=False):
