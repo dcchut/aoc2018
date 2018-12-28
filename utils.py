@@ -44,6 +44,10 @@ def parallel_map(inputs, fn, unpack=False):
         return Parallel(n_jobs=num_cores)(delayed(fn)(q) for q in inputs)
 
 
+def flatten_list(li):
+    return [item for sublist in li for item in sublist]
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -85,3 +89,7 @@ class CircularDoublyLinkedList:
             # update self.first if we removed the first node
             if self.first == node:
                 self.first = node.next
+
+
+def manhattan_distance(p,q):
+    return sum(abs(p[0]-p[1]) for p in zip(p,q))
