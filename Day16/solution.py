@@ -1,5 +1,5 @@
-from utils import load_input, intersection, get_numbers#import utils
-from Day16.operations import *
+from utils import load_input, intersection, get_numbers
+from elfcode import *
 
 
 def check(before,after,operation,operations):
