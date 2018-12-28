@@ -93,3 +93,14 @@ class CircularDoublyLinkedList:
 
 def manhattan_distance(p,q):
     return sum(abs(p[0]-p[1]) for p in zip(p,q))
+
+
+def memoize(func):
+    store = {}
+
+    def wrapper_memoize(*args,**kwargs):
+        signature = (args,tuple(zip(kwargs, kwargs.values())))
+        if signature not in store:
+            store[signature] = func(*args,**kwargs)
+        return store[signature]
+    return wrapper_memoize
