@@ -2,7 +2,6 @@ def addr(register, a, b, c):
     register[c] = register[a] + register[b]
     return register
 
-
 def addi(register, a, b, c):
     register[c] = register[a] + b
     return register
